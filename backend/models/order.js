@@ -13,7 +13,7 @@ const ProductCartSchema = new mongoose.Schema({
 });
 module.export = mongoose.model("ProductCart", ProductCartSchema);
 
-const OrderSchema = new mongoose.Scema(
+const OrderSchema = new mongoose.Schema(
   {
     products: [ProductCartSchema],
     transaction_id: {},
@@ -22,7 +22,7 @@ const OrderSchema = new mongoose.Scema(
     updated: Date,
     user: {
       type: ObjectId,
-      ref: User,
+      ref: "User",
     },
   },
   { timestamps: true }
