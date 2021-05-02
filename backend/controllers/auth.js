@@ -80,7 +80,6 @@ exports.isAuthenticated = (req, res, next) => {
       error: "access denaid",
     });
   }
-
   next();
 };
 
@@ -90,6 +89,5 @@ exports.isAdmin = (req, res, next) => {
       error: " you are not admin",
     });
   }
-
   next();
 };

@@ -13,4 +13,4 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.export = mongoose.model("Category", categorySchema);
+module.exports = mongoose.model("Category", categorySchema);
