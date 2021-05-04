@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const { ObjectId } = mongoose.Schema;
 
-const productSchema = new Schema(
+const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -31,6 +31,10 @@ const productSchema = new Schema(
       type: Number,
       default: 0,
     },
+    sold: {
+      type: Number,
+      default: 0,
+    },
     photo: {
       data: Buffer,
       contentType: String,
@@ -39,4 +43,4 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-module.export = mongose.model("Product", productSchema);
+module.exports = mongoose.model("Product", productSchema);
