@@ -1,23 +1,14 @@
-const express = require("express");
-const router = express.Router();
-
-// for validation
-const { check } = require("express-validator");
-const {
-  signup,
-  signout,
-  signin,
-  isSignedIn,
-  isAuthenticated,
-  isAdmin,
-} = require("../controllers/auth");
+var express = require("express");
+var router = express.Router();
+const { check, validationResult } = require("express-validator");
+const { signout, signup, signin, isSignedIn } = require("../controllers/auth");
 
 router.post(
   "/signup",
   [
-    check("name", "Name should be at least 3 char").isLength({ min: 3 }),
-    check("email", "Email is required").isEmail(),
-    check("password", "Password should be 8 char long").isLength({ min: 8 }),
+    check("name", "name should be at least 3 char").isLength({ min: 3 }),
+    check("email", "email is required").isEmail(),
+    check("password", "password should be at least 3 char").isLength({ min: 3 })
   ],
   signup
 );
@@ -25,16 +16,12 @@ router.post(
 router.post(
   "/signin",
   [
-    check("email", "enter valid email").isEmail(),
-    check("password", "enter valid password").isLength({ min: 8 }),
+    check("email", "email is required").isEmail(),
+    check("password", "password field is required").isLength({ min: 1 })
   ],
   signin
 );
-router.get("/signout", signout);
 
-// test route
-// router.get("/testroute", isSignedIn, (req, res) => {
-//   res.send("protected route");
-// });
+router.get("/signout", signout);
 
 module.exports = router;

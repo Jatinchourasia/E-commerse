@@ -6,7 +6,7 @@ exports.getOrderById = (req, res, next, id) => {
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "No order found in db",
+          error: "NO order found in DB"
         });
       }
       req.order = order;
@@ -20,7 +20,7 @@ exports.createOrder = (req, res) => {
   order.save((err, order) => {
     if (err) {
       return res.status(400).json({
-        error: "failed to save your order in DB",
+        error: "Failed to save your order in DB"
       });
     }
     res.json(order);
@@ -30,14 +30,18 @@ exports.createOrder = (req, res) => {
 exports.getAllOrders = (req, res) => {
   Order.find()
     .populate("user", "_id name")
-    .exec((err, orders) => {
+    .exec((err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "no orders found in Db",
+          error: "No orders found in DB"
         });
       }
-      res.json(orders);
+      res.json(order);
     });
+};
+
+exports.getOrderStatus = (req, res) => {
+  res.json(Order.schema.path("status").enumValues);
 };
 
 exports.updateStatus = (req, res) => {
@@ -47,14 +51,10 @@ exports.updateStatus = (req, res) => {
     (err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "Cannot update order status",
+          error: "Cannot update order status"
         });
       }
       res.json(order);
     }
   );
-};
-
-exports.getOrderStatus = (req, res) => {
-  res.json(Order.schema.path("status").enumValues);
 };
