@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Footer from "./core/Footer";
 import Home from "./core/Home";
 import Nav from "./core/Nav";
+import Cart from "./core/Cart";
 
 import SignUp from "./user/Signup";
 import SignIn from "./user/Signin";
@@ -18,6 +19,7 @@ import Orders from "./admin/Orders";
 import ManageCategories from "./admin/ManageCategory";
 import UpdateCategory from "./admin/UpdateCategory";
 
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -25,6 +27,7 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/signin" exact component={SignIn} />
         <Route path="/signup" exact component={SignUp} />
+        <Route path="/cart" exact component={Cart} />
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard} />
         <AdminRoute

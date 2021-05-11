@@ -5,6 +5,8 @@ import AdminDashBoard from "../user/AdminDashBoard";
 import { Link } from "react-router-dom";
 import { isAutheticated } from "../auth/helper";
 import { deleteProduct, getAllProducts } from "./helper/adminapicall";
+import ImageHelper from "../user/helper/imageHelper";
+
 const ManageProduct = () => {
   // state
 
@@ -49,13 +51,13 @@ const ManageProduct = () => {
               <Card key={index}>
                 <div className="image">
                   {/* todo photo */}
-                  <img src={product.photo} alt="" />
+                  <ImageHelper product={product} />
                 </div>
                 <div className="details">
                   <div className="info">
                     <div className="right">
                       <p>name : {product.name}</p>
-                      <p>price : {product.price}</p>
+                      <p>price : ₹ {product.price}</p>
                     </div>
                     <div className="left">
                       <p>stocks : {product.stock}</p>
