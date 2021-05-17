@@ -57,7 +57,7 @@ const ManageProduct = () => {
                   <div className="info">
                     <div className="right">
                       <p>name : {product.name}</p>
-                      <p>price : ₹ {product.price}</p>
+                      <p>price : $ {product.price}</p>
                     </div>
                     <div className="left">
                       <p>stocks : {product.stock}</p>

@@ -18,7 +18,7 @@ import UpdateProduct from "./admin/UpdateProduct";
 import Orders from "./admin/Orders";
 import ManageCategories from "./admin/ManageCategory";
 import UpdateCategory from "./admin/UpdateCategory";
-
+import AdminInfo from "./admin/AdminInfo";
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/cart" exact component={Cart} />
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
-        <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard} />
+        <AdminRoute path="/admin/dashboard" exact component={AdminInfo} />
         <AdminRoute
           path="/admin/create/category"
           exact

@@ -1,26 +1,48 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Base from "../core/Base";
+import { isAutheticated, signout } from "../auth/helper";
+
 const UserDashBoard = () => {
+  let history = useHistory();
+
+  const {
+    user: { name, email },
+  } = isAutheticated();
   return (
     <Base>
       <User>
         <div className="dashboard">
           <div className="admin-right">
             <div className="menu">
-              <h2>User navigation</h2>
-              <div className="links">
-                <p>create</p>
-                <p>create</p>
-                <p>create</p>
-                <p>create</p>
-              </div>
+              <h2>User info</h2>
             </div>
-            <div className="logout">logout</div>
+            <div className="logout">
+              <p
+                onClick={() => {
+                  signout(() => {
+                    history.push("/");
+                  });
+                }}
+              >
+                logout <i className="fa fa-sign-out" aria-hidden="true"></i>
+              </p>
+            </div>
           </div>
 
-          <div className="admin-left"></div>
+          <div className="admin-left">
+            <Usr>
+              <div className="headre">
+                <h2>Informatin</h2>
+              </div>
+              <div className="main">
+                <h2>userName: {name}</h2>
+
+                <h2>Email: {email} </h2>
+              </div>
+            </Usr>
+          </div>
         </div>
       </User>
     </Base>
@@ -45,6 +67,8 @@ const User = styled.div`
       #162549 0%,
       rgba(55, 50, 115, 0.87) 100%
     );
+    box-shadow: 0px 0px 20px 2px rgba(21, 19, 46, 0.315);
+
     border-radius: 20px;
   }
   .admin-left {
@@ -90,6 +114,20 @@ const User = styled.div`
     margin-left: 0.5rem;
     color: white;
     cursor: pointer;
+  }
+`;
+
+const Usr = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  box-shadow: 0px 0px 15px 3px rgba(21, 19, 46, 0.192);
+  padding: 1.5rem 0rem 1.5rem 1.5rem;
+  border-radius: 15px;
+  .main {
+    height: 100%;
+
+    padding: 0.5rem;
   }
 `;
 

@@ -6,13 +6,15 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+const stripe = require("stripe")(process.env.STRIPR_KEY);
 //My routes
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
+const stripeRoutes = require("./routes/stripepayment");
+// const paymentBRoutes = require("./routes/paymentB");
 
 //DB Connection
 mongoose
@@ -36,11 +38,13 @@ app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", stripeRoutes);
+// app.use("/api", paymentBRoutes);
 
 //PORT
 const port = process.env.PORT || 8000;
 
 //Starting a server
 app.listen(port, () => {
-  console.log(`app is running at ${port}`);
+  console.log(`app is running`);
 });

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Base from "../core/Base";
-import { isAutheticated } from "../auth/helper";
+import { isAutheticated, signout } from "../auth/helper";
 
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
@@ -24,6 +24,13 @@ const AdminDashBoard = ({ child }) => {
         <div className="menu">
           <h2>Admin navigation</h2>
           <div className="links">
+            <Link
+              style={currentTab(history, "/admin/dashboard")}
+              to="/admin/dashboard"
+            >
+              Dashboard
+            </Link>
+            <br />{" "}
             <Link
               style={currentTab(history, "/admin/create/category")}
               to="/admin/create/category"
@@ -52,17 +59,18 @@ const AdminDashBoard = ({ child }) => {
               Manage Products
             </Link>
             <br />
-            <Link
-              style={currentTab(history, "/admin/orders")}
-              to="/admin/orders"
-            >
-              Manage Orders
-            </Link>
-            <br />
           </div>
         </div>
         <div className="logout">
-          logout <i className="fa fa-sign-out" aria-hidden="true"></i>
+          <p
+            onClick={() => {
+              signout(() => {
+                history.push("/");
+              });
+            }}
+          >
+            logout <i className="fa fa-sign-out" aria-hidden="true"></i>
+          </p>
         </div>
       </div>
     );
@@ -104,7 +112,7 @@ const Admin = styled.div`
       rgba(55, 50, 115, 0.87) 100%
     );
     border-radius: 20px;
-    box-shadow: 10px 10px 100px 4px rgba(21, 19, 46, 0.315);
+    box-shadow: 0px 0px 20px 2px rgba(21, 19, 46, 0.315);
   }
   .admin-right {
     height: 85vh;

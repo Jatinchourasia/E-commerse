@@ -4,7 +4,7 @@ import ImageHelper from "../user/helper/imageHelper";
 import { addItemToCart, removeItemFromCart } from "../user/helper/cartHelper";
 import { Redirect } from "react-router-dom";
 
-const Card = ({
+export const Cartcard = ({
   product,
   addtoCart = true,
   removefromCart = false,
@@ -36,7 +36,7 @@ const Card = ({
       addtoCart && (
         <button onClick={addToCart}>
           {" "}
-          <i className="fas fa-shopping-cart"></i>
+          <i class="fas fa-shopping-cart"></i>
           Add to cart
         </button>
       )
@@ -51,86 +51,103 @@ const Card = ({
             setReload(!reload);
           }}
         >
-          Remove From Cart
+          <div className="lin1"></div>
+          <div className="lin2"></div>
         </button>
       )
     );
   };
   return (
     <CardSection>
-      <div className="image">
-        {getARedirect(redirect)}
-        <ImageHelper product={product} />
-      </div>
-      <div className="detail">
-        <div className="desc">
+      <div className="prod">
+        <div className="image">
+          {getARedirect(redirect)}
+          <ImageHelper product={product} />
+        </div>
+        <div className="detail">
           <h2>{cartTitle}</h2>
-          <h2>$ {cartPrice}</h2>
+          <p>{cartDescription}</p>
         </div>
-        <div className="btn">
-          {showAddToCart(addtoCart)}
-          {removeFromCart(removefromCart)}
-        </div>
+      </div>
+      <div className="price">
+        <h2>$ {cartPrice}</h2>
+      </div>
+      <div className="btn">
+        {showAddToCart(addtoCart)}
+        {removeFromCart(removefromCart)}
       </div>
     </CardSection>
   );
 };
 
 const CardSection = styled.div`
-  height: 22rem;
-  width: 15rem;
   background: rgb(255, 255, 255);
-  border-radius: 1rem;
-  padding: 0.5rem;
+  width: 55vw;
+  padding: 0.5rem 1rem;
   margin: 0.8rem 0rem;
-  box-shadow: 0px 0px 10px 0px rgba(179, 179, 179, 0.774);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+
+  .prod {
+    display: flex;
+  }
+
   .image {
-    background: rgba(226, 226, 226, 0.575);
-    height: 16rem;
+    height: 6rem;
+    width: 6rem;
     border-radius: 10px;
+    border: 1px solid #d3d3d3;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 1rem;
   }
   img {
-    width: auto;
+    width: 100%;
     height: auto;
-    max-width: 14rem;
-    max-height: 16rem;
+    max-width: 6rem;
+    max-height: 6rem;
     border-radius: 10px;
-  }
-  .desc {
-    margin: 0.5rem;
-    display: flex;
-    justify-content: space-between;
   }
 
   button {
     display: flex;
     border: none;
-    background: black;
+    background: #ffffff;
     color: white;
-    width: 100%;
+    width: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.8rem 2rem;
+    padding: 0.5rem;
     border-radius: 10px;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
   }
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  .lin1 {
+    height: 2rem;
+    width: 2px;
+    background: #000000;
+    transform: rotateZ(-45deg) translateY(4%);
   }
+  .lin2 {
+    height: 2rem;
+    width: 2px;
+    background: #000000;
+    transform: rotateZ(45deg) translateY(5%);
+  }
+
   i {
     margin-right: 0.4rem;
   }
+  h2 {
+    font-size: 1.2rem;
+  }
+  p {
+    color: gray;
+    font-size: 0.8rem;
+  }
 `;
-
-export default Card;

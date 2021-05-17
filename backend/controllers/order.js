@@ -6,7 +6,7 @@ exports.getOrderById = (req, res, next, id) => {
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "NO order found in DB"
+          error: "NO order found in DB",
         });
       }
       req.order = order;
@@ -20,11 +20,15 @@ exports.createOrder = (req, res) => {
   order.save((err, order) => {
     if (err) {
       return res.status(400).json({
-        error: "Failed to save your order in DB"
+        error: "Failed to save your order in DB",
       });
     }
     res.json(order);
   });
+};
+
+exports.getOrder = (req, res) => {
+  return res.json(req.product);
 };
 
 exports.getAllOrders = (req, res) => {
@@ -33,7 +37,7 @@ exports.getAllOrders = (req, res) => {
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "No orders found in DB"
+          error: "No orders found in DB",
         });
       }
       res.json(order);
@@ -51,7 +55,7 @@ exports.updateStatus = (req, res) => {
     (err, order) => {
       if (err) {
         return res.status(400).json({
-          error: "Cannot update order status"
+          error: "Cannot update order status",
         });
       }
       res.json(order);

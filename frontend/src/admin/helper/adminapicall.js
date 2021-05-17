@@ -6,7 +6,7 @@ export const createCategory = (userId, token, category) => {
   return fetch(`${API}/category/create/${userId}`, {
     method: "POST",
     headers: {
-      Accept: "applcation/json",
+      Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },

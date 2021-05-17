@@ -4,6 +4,8 @@ import { isAutheticated } from "../auth/helper";
 import { cartEmpty, loadCart } from "../user/helper/cartHelper";
 import StripeCheckoutButton from "react-stripe-checkout";
 import { API } from "../backend";
+import styled from "styled-components";
+import { createOrder } from "./helper/orderHelper";
 
 const StripeCheckout = ({
   products,
@@ -17,7 +19,7 @@ const StripeCheckout = ({
     address: "",
   });
 
-  const token = isAutheticated() && isAutheticated().token;
+  const usertoken = isAutheticated() && isAutheticated().token;
   const userId = isAutheticated() && isAutheticated().user._id;
 
   const getFinalPrice = () => {
@@ -29,47 +31,79 @@ const StripeCheckout = ({
   };
 
   const makePayment = (token) => {
-    const body = { token, products };
+    const price = parseInt(getFinalPrice());
 
+    // console.log("token", token);
+    // console.log("usertoken", usertoken);
+    const body = {
+      token,
+      products,
+    };
     const headers = {
       "Content-Type": "application/json",
     };
-    return fetch(`${API}/stripepayment`, {
+    return fetch(`${API}stripepayment`, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
     })
       .then((response) => {
-        console.log(response);
+        setData({ ...data, success: true, loading: false });
+
+        const orderData = {
+          products: products,
+          transection_id: token.id,
+          amount: price,
+        };
+        // console.log("order,data", orderData);
+        createOrder(userId, usertoken, orderData);
+        // console.log("from stripe checkout", userId, token, orderData);
+        cartEmpty(() => {
+          console.log("is it a crash");
+        });
+        setReload(!reload);
+        // console.log(response);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setData({ loading: false, success: false });
+        console.log(err);
+      });
   };
 
   const showStripeButton = () => {
     return isAutheticated() ? (
       <StripeCheckoutButton
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
-        token={() => {
-          makePayment();
-        }}
-        amount={getFinalPrice()}
+        token={makePayment}
+        amount={getFinalPrice() * 100}
         name="thankyou for buying"
         shippingAddress
         billingAddress
       >
-        <button>pay with stripe</button>
+        <button>Checkout</button>
       </StripeCheckoutButton>
     ) : (
       <Link to="/signin">signin</Link>
     );
   };
 
-  return (
-    <div>
-      <h3>Stripe Checkout ₹ {getFinalPrice()}</h3>
-      {showStripeButton()}
-    </div>
-  );
+  return <Styledbtn>{showStripeButton()}</Styledbtn>;
 };
+
+const Styledbtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  button {
+    margin: 1rem;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+`;
 
 export default StripeCheckout;

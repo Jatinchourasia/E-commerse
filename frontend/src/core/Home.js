@@ -29,9 +29,10 @@ const Home = () => {
 
         <div className="products">
           {product.map((prod, index) => {
-            console.log(prod)
+            {
+              /* console.log(prod); */
+            }
             return <Card product={prod} key={index} />;
-            
           })}
         </div>
       </HomeSection>
@@ -45,11 +46,11 @@ const HomeSection = styled.div`
   margin: 0 2.5vw;
   padding: 1rem;
   .products {
+    min-height: 80vh;
     display: grid;
-    grid-template-columns: repete(4, 1fr);
-    grid-template-rows: repete(4, 1fr);
-    column-gap: 50px;
-    row-gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-column-gap: 1rem;
+    grid-row-gap: 2rem;
   }
 `;
 

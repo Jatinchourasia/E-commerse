@@ -5,7 +5,6 @@ const { v4: uuidv4 } = require("uuid");
 
 exports.makePayment = (req, res) => {
   const { product, token } = req.body;
-  console.log("productss", product);
 
   let amount = 0;
   product.map((p) => {

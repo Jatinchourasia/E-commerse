@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AdminDashBoard from "../user/AdminDashBoard";
 
-const Orders = () => {
-  const ordr = () => {
+const AdminInfo = () => {
+  const admin = () => {
     return (
-      <Ordr>
-        <div className="header">
-          <h2>Orders</h2>
+      <Admn>
+        <div className="headre">
+          <h2>Dashboard</h2>
         </div>
         <div className="main"></div>
-      </Ordr>
+      </Admn>
     );
   };
 
-  return <AdminDashBoard child={ordr()} />;
+  return <AdminDashBoard child={admin()} />;
 };
 
-const Ordr = styled.div`
+const Admn = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -27,10 +27,8 @@ const Ordr = styled.div`
   .main {
     height: 100%;
 
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    padding: 0.5rem;
   }
 `;
 
-export default Orders;
+export default AdminInfo;

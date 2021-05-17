@@ -6,8 +6,8 @@ import Base from "../core/Base";
 
 const SignIn = () => {
   const [values, setValues] = useState({
-    email: "new@gmail.com",
-    password: "new@gmail.com",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     didRedirect: false,
@@ -72,6 +72,12 @@ const SignIn = () => {
   const SignInForm = () => {
     return (
       <SigninForm>
+        <div className="left">
+          <img
+            src="https://image.freepik.com/free-vector/customer-buying-cloth-internet-store-women-using-gadget-online-shopping-flat-vector-illustration-ecommerce-sale-retail-concept_74855-9833.jpg"
+            alt=""
+          />
+        </div>
         <div className="right">
           <div className="mainform">
             <h1>Let's sign you in.</h1>
@@ -93,11 +99,10 @@ const SignIn = () => {
               <p>
                 Don't have an account?
                 <span>
-                  <Link to="/signup">Register</Link>
+                  <Link to="/signup"> Register</Link>
                 </span>
               </p>
               <button onClick={onSubmit}>Signin</button>
-              <p>{JSON.stringify(values)}</p>
             </form>
           </div>
         </div>
@@ -114,12 +119,18 @@ const SignIn = () => {
   );
 };
 const Success = styled.div`
-  display: flex;
-  align-items: center;
-  min-height: 5vh;
-  background-color: white;
-  width: 16rem;
-  border-radius: 10px;
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+    background: #000000;
+    color: #ffffff;
+    margin: 0.5rem;
+    padding: 0.8rem 1rem;
+    width: 28vw;
+  }
 `;
 const SigninForm = styled.div`
   min-height: 90vh;
@@ -128,11 +139,21 @@ const SigninForm = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem 2.5vw;
-  background: black;
+  background: #ffffff;
+  .left {
+    padding: 1rem;
+    height: 90vh;
+    width: 60vw;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
   .right {
     padding: 1rem;
     height: 80vh;
-    color: white;
+    width: 40vw;
+    color: #000000;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -140,23 +161,27 @@ const SigninForm = styled.div`
 
   form {
     display: flex;
+
     flex-direction: column;
     align-items: center;
+    p {
+      margin-top: 4rem;
+    }
   }
   input {
     margin: 0.5rem;
     border: none;
-    padding: 0.5rem 1rem;
-    width: 16rem;
+    padding: 0.8rem 1rem;
+    width: 28vw;
     border-radius: 10px;
-    border: solid #949494 1px;
-    background: black;
-    color: white;
+    border: solid #cfcfcf 1px;
+    background: #ffffff;
+    color: #000000;
     outline: none;
     font-family: "poppins", sans-serif;
   }
-  input::after {
-    border: solid #ffffff 1px;
+  input:focus {
+    border: solid #000000 1px;
   }
   p {
     margin: 0.5rem;
@@ -165,19 +190,24 @@ const SigninForm = styled.div`
   }
   a {
     text-decoration: none;
-    color: white;
+    color: #000000;
   }
   button {
     margin: 0.5rem;
-    width: 16rem;
+    width: 28vw;
     border: none;
     border-radius: 10px;
     padding: 0.6rem 1rem;
     font-family: "poppins", sans-serif;
     cursor: pointer;
+    background-color: black;
+    color: white;
   }
   h1 {
     margin-bottom: 2rem;
+  }
+  img {
+    width: 100%;
   }
 `;
 

@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { isAutheticated, signout } from "../auth/helper";
+import { loadCart } from "../user/helper/cartHelper";
 
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
@@ -84,7 +85,9 @@ const Nav = ({ history }) => {
               className="nav-link"
               to="/cart"
             >
-              cart
+              <h3>
+                <i className="fas fa-shopping-cart"></i>
+              </h3>
             </Link>
           </li>
         </ul>
