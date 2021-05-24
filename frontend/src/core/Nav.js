@@ -97,7 +97,7 @@ const Nav = ({ history }) => {
 };
 
 const Navigation = styled.div`
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 2;
   position: relative;
 
@@ -109,6 +109,7 @@ const Navigation = styled.div`
     min-height: 8vh;
     padding: 0.5rem 0rem;
     justify-content: space-between;
+    font-size: 1.5rem;
   }
   ul {
     list-style: none;

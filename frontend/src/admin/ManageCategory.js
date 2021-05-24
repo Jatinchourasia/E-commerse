@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 
 import { isAutheticated } from "../auth/helper";
 import { deleteCategory, getCategories } from "./helper/adminapicall";
+import Loader from "../core/Loader";
 
 const ManageCategories = () => {
   // state
   const [categories, setCategories] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   // user info
 
   const { user, token } = isAutheticated();
@@ -24,6 +25,7 @@ const ManageCategories = () => {
         console.log(data.err);
       } else {
         setCategories(data);
+        setLoading(!loading);
       }
     });
   };
@@ -50,33 +52,37 @@ const ManageCategories = () => {
         <div className="headre">
           <h2>Manage Categories</h2>
         </div>
-        <div className="main">
-          {categories.map((category, index) => {
-            return (
-              <Card key={index}>
-                <div className="right">
-                  <h3>{category.name}</h3>
-                </div>
-                <div className="buttons">
-                  <Link
-                    to={`/admin/category/update/${category._id}`}
-                    className="update"
-                  >
-                    Update
-                  </Link>
-                  <button
-                    onClick={() => {
-                      deleteThisCategory(category._id);
-                    }}
-                    className="delete"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="main">
+            {categories.map((category, index) => {
+              return (
+                <Card key={index}>
+                  <div className="right">
+                    <h3>{category.name}</h3>
+                  </div>
+                  <div className="buttons">
+                    <Link
+                      to={`/admin/category/update/${category._id}`}
+                      className="update"
+                    >
+                      Update
+                    </Link>
+                    <button
+                      onClick={() => {
+                        deleteThisCategory(category._id);
+                      }}
+                      className="delete"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        )}
       </ManagCate>
     );
   };
@@ -91,6 +97,8 @@ const ManagCate = styled.div`
   box-shadow: 0px 0px 15px 3px rgba(21, 19, 46, 0.192);
   padding: 1.5rem 0rem 1.5rem 1.5rem;
   border-radius: 15px;
+  font-size: 1.6rem;
+
   .main {
     height: 100%;
 
@@ -105,8 +113,8 @@ const Card = styled.div`
   width: 100%;
   box-shadow: 0px 0px 10px 0px rgba(179, 179, 179, 0.774);
 
-  margin-bottom: 0.6rem;
-  padding: 0.5rem;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
   display: flex;
   border-radius: 10px;
   align-items: center;
@@ -114,13 +122,14 @@ const Card = styled.div`
 
   button {
     border: none;
-    width: 5rem;
+    width: 6rem;
     border-radius: 7px;
     margin-left: 0.5rem;
     padding: 0.5rem 0.8rem;
     font-family: "poppins", sans-serif;
     cursor: pointer;
     color: white;
+    font-size: 1.6rem;
   }
   .update {
     background: #24b324;
@@ -133,11 +142,12 @@ const Card = styled.div`
     cursor: pointer;
     color: white;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
   .delete {
     background: #b91f1f;
-    font-size: 0.8rem;
+
+    font-size: 1.2rem;
   }
 
   .right {

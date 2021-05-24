@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 import { isAutheticated } from "../auth/helper";
 import { deleteProduct, getAllProducts } from "./helper/adminapicall";
 import ImageHelper from "../user/helper/imageHelper";
+import Loader from "../core/Loader";
 
 const ManageProduct = () => {
   // state
 
   const [products, setProducts] = useState([]);
+
+  const [loading, setLoading] = useState(true);
   const { user, token } = isAutheticated();
+
   // useeffect
   const preload = () => {
     getAllProducts().then((data) => {
@@ -19,6 +23,7 @@ const ManageProduct = () => {
         console.log(data.err);
       } else {
         setProducts(data);
+        setLoading(!loading);
       }
     });
   };
@@ -45,46 +50,50 @@ const ManageProduct = () => {
         <div className="headre">
           <h2>Manage Product</h2>
         </div>
-        <div className="main">
-          {products.map((product, index) => {
-            return (
-              <Card key={index}>
-                <div className="image">
-                  {/* todo photo */}
-                  <ImageHelper product={product} />
-                </div>
-                <div className="details">
-                  <div className="info">
-                    <div className="right">
-                      <p>name : {product.name}</p>
-                      <p>price : $ {product.price}</p>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="main">
+            {products.map((product, index) => {
+              return (
+                <Card key={index}>
+                  <div className="image">
+                    {/* todo photo */}
+                    <ImageHelper product={product} />
+                  </div>
+                  <div className="details">
+                    <div className="info">
+                      <div className="right">
+                        <p>name : {product.name}</p>
+                        <p>price : $ {product.price}</p>
+                      </div>
+                      <div className="left">
+                        <p>stocks : {product.stock}</p>
+                        <p>sold : {product.sold}</p>
+                      </div>
                     </div>
-                    <div className="left">
-                      <p>stocks : {product.stock}</p>
-                      <p>sold : {product.sold}</p>
+                    <div className="buttons">
+                      <Link
+                        to={`/admin/product/update/${product._id}`}
+                        className="update"
+                      >
+                        Update
+                      </Link>
+                      <button
+                        onClick={() => {
+                          deleteThisProduct(product._id);
+                        }}
+                        className="delete"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
-                  <div className="buttons">
-                    <Link
-                      to={`/admin/product/update/${product._id}`}
-                      className="update"
-                    >
-                      Update
-                    </Link>
-                    <button
-                      onClick={() => {
-                        deleteThisProduct(product._id);
-                      }}
-                      className="delete"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
+                </Card>
+              );
+            })}
+          </div>
+        )}
       </ManagProd>
     );
   };
@@ -99,6 +108,8 @@ const ManagProd = styled.div`
   box-shadow: 0px 0px 15px 3px rgba(21, 19, 46, 0.192);
   padding: 1.5rem 0rem 1.5rem 1.5rem;
   border-radius: 15px;
+  font-size: 1.6rem;
+
   .main {
     height: 100%;
 
@@ -117,9 +128,10 @@ const Card = styled.div`
   padding: 0.5rem;
   display: flex;
   border-radius: 10px;
+
   .image {
     width: 6rem;
-    padding: 0.3rem;
+    padding: 0.5rem;
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -131,7 +143,7 @@ const Card = styled.div`
     padding: 0.5rem;
   }
   img {
-    width: 5rem;
+    width: 6rem;
     border-radius: 5px;
   }
   .buttons {
@@ -142,7 +154,7 @@ const Card = styled.div`
     padding: 0.8rem 0.5rem;
 
     p {
-      font-size: 0.9rem;
+      font-size: 1.5rem;
     }
   }
   .right {
@@ -154,7 +166,7 @@ const Card = styled.div`
 
   button {
     border: none;
-    width: 5rem;
+    width: 6rem;
     border-radius: 7px;
     margin-left: 0.5rem;
     padding: 0.5rem 0.8rem;
@@ -173,11 +185,11 @@ const Card = styled.div`
     cursor: pointer;
     color: white;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
   .delete {
     background: #b91f1f;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 `;
 

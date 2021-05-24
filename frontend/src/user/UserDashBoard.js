@@ -56,6 +56,7 @@ const User = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
   .dashboard {
     height: 85vh;
     width: 80vw;

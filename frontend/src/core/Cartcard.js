@@ -90,14 +90,15 @@ const CardSection = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
+  font-size: 1.6rem;
 
   .prod {
     display: flex;
   }
 
   .image {
-    height: 6rem;
-    width: 6rem;
+    height: 8rem;
+    width: 8rem;
     border-radius: 10px;
     border: 1px solid #d3d3d3;
     display: flex;
@@ -106,10 +107,9 @@ const CardSection = styled.div`
     margin-right: 1rem;
   }
   img {
-    width: 100%;
-    height: auto;
-    max-width: 6rem;
-    max-height: 6rem;
+    height: 100%;
+    max-width: 8rem;
+    max-height: 8rem;
     border-radius: 10px;
   }
 
@@ -144,10 +144,10 @@ const CardSection = styled.div`
     margin-right: 0.4rem;
   }
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
   p {
     color: gray;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 `;

@@ -42,7 +42,7 @@ const SignUp = () => {
     return (
       <Success style={{ display: success ? "" : "none" }}>
         <p>
-          New account created sucessfully. Please{" "}
+          New account created sucessfully. Please
           <Link to="/signin"> Login here</Link>
         </p>
       </Success>
@@ -115,6 +115,7 @@ const SignupForm = styled.div`
   align-items: center;
   padding: 1rem 2.5vw;
   background: #ffffff;
+  font-size: 1.6rem;
   .left {
     padding: 1rem;
     height: 90vh;
@@ -160,7 +161,7 @@ const SignupForm = styled.div`
   }
   p {
     margin: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: gray;
   }
   a {
@@ -172,7 +173,7 @@ const SignupForm = styled.div`
     width: 28vw;
     border: none;
     border-radius: 10px;
-    padding: 0.6rem 1rem;
+    padding: 1rem 1.4rem;
     font-family: "poppins", sans-serif;
     cursor: pointer;
     background-color: black;
@@ -194,10 +195,14 @@ const Success = styled.div`
     border-radius: 10px;
 
     background: #000000;
-    color: #ffffff;
+    color: #d1d1d1;
     margin: 0.5rem;
     padding: 0.8rem 1rem;
     width: 28vw;
+  }
+  a {
+    margin-left: 0.5rem;
+    color: white;
   }
 `;
 

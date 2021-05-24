@@ -55,7 +55,6 @@ const Cart = () => {
             </div>
           </div>
         </div>
-
         <div className="chkout">
           {isAutheticated() && (
             <div className="ckeckout">
@@ -87,23 +86,21 @@ const Cart = () => {
                   <h2>Total price</h2>
                   <h2>$ {getFinalPrice()}</h2>
                 </div>
-                
               </div>
               <div className="payment-button">
-              <StripeCheckout   products ={products}
-              setReload={setReload}
-              reload={reload}
-              />
+                <StripeCheckout
+                  products={products}
+                  setReload={setReload}
+                  reload={reload}
+                />
               </div>
-              
 
               {/* <BraintreePay products={products} setReload={setReload} /> */}
             </div>
           )}
         </div>
-      .
+        .
       </div>
-      
     );
   };
 
@@ -135,6 +132,7 @@ const HomeSection = styled.div`
   width: 95vw;
   margin: 0 2.5vw;
   padding: 1rem;
+  font-size: 1.6rem;
   .empty-cart {
     display: flex;
     height: 90vh;
@@ -142,9 +140,9 @@ const HomeSection = styled.div`
     align-items: center;
     justify-content: center;
   }
-  img {
+  /* img {
     width: 40%;
-  }
+  } */
   .cartproducts {
     height: 60vh;
     overflow-y: scroll;
@@ -178,11 +176,11 @@ const HomeSection = styled.div`
     padding: 1rem;
     p {
       color: #616161;
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
     span {
       color: black;
-      font-size: 1.2rem;
+      font-size: 2.3rem;
     }
 
     a {
@@ -193,13 +191,13 @@ const HomeSection = styled.div`
   }
   .checkcard {
     background-color: #f2f7fd;
-    height: 5rem;
+    height: 8rem;
     width: 100%;
     border-radius: 15px;
     padding: 0.5rem 0.8rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
     i {
-      margin-right: 0.5rem;
+      margin-right: 1rem;
     }
   }
   .bill {
@@ -227,15 +225,14 @@ const HomeSection = styled.div`
   .grandtotal {
     display: flex;
     justify-content: space-between;
-    padding: 0 0.5rem;
-    margin-top: 0.5rem;
+    padding: 0 1rem;
+    margin-top: 1rem;
     h2 {
-      font-size: 1.2rem;
+      font-size: 2rem;
     }
   }
 
-  .payment-button{
-    
+  .payment-button {
   }
 `;
 

@@ -99,6 +99,7 @@ const Admin = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
 
   .dashboard {
     height: 85vh;
@@ -149,7 +150,7 @@ const Admin = styled.div`
     }
 
     a {
-      font-size: calc(0.5rem + 0.8vw);
+      font-size: calc(0.8rem + 0.8vw);
       margin: 0rem 0 0 0.5rem;
       font-weight: regular;
       color: #b6b6b6;

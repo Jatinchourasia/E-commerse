@@ -77,8 +77,8 @@ const Card = ({
 };
 
 const CardSection = styled.div`
-  height: 22rem;
-  width: 15rem;
+  height: 28rem;
+  width: 18rem;
   background: rgb(255, 255, 255);
   border-radius: 1rem;
   padding: 0.5rem;
@@ -87,9 +87,10 @@ const CardSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 1rem;
   .image {
     background: rgba(226, 226, 226, 0.575);
-    height: 16rem;
+    height: 18rem;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -98,8 +99,8 @@ const CardSection = styled.div`
   img {
     width: auto;
     height: auto;
-    max-width: 14rem;
-    max-height: 16rem;
+    max-width: 17rem;
+    max-height: 17.9rem;
     border-radius: 10px;
   }
   .desc {

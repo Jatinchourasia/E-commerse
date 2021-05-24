@@ -109,6 +109,7 @@ const AddCate = styled.div`
   box-shadow: 0px 0px 15px 3px rgba(21, 19, 46, 0.192);
   padding: 1.5rem;
   border-radius: 15px;
+  font-size: 1.6rem;
   .main {
     display: flex;
     height: 60vh;
@@ -121,17 +122,17 @@ const AddCate = styled.div`
       margin: 0.5rem 0;
       border: none;
       border-radius: 10px;
-      padding: 0.7rem 1.5rem;
+      padding: 1rem 1.8rem;
       font-family: "poppins", sans-serif;
       cursor: pointer;
       color: white;
       background: black;
     }
     input {
-      margin: 0.5rem 0;
+      margin: 1rem 0;
       border: none;
       padding: 0.7rem 1rem;
-      width: 16rem;
+      width: 26rem;
       border-radius: 10px;
       border: solid #000000 1px;
       background: #ffffff;
@@ -141,19 +142,21 @@ const AddCate = styled.div`
       color: black;
     }
     p {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
     }
     .success {
-      font-size: 1rem;
-      width: 16rem;
-      padding: 0.2rem 0.6rem;
+      font-size: 1.4rem;
+      width: 26rem;
+
+      padding: 1rem 0.6rem;
       border-radius: 10px;
       background: #afcaaf;
     }
     .warning {
-      font-size: 1rem;
-      width: 16rem;
-      padding: 0.2rem 0.6rem;
+      font-size: 1.4rem;
+      width: 26rem;
+
+      padding: 1rem 0.6rem;
       border-radius: 10px;
       background: #caafaf;
     }

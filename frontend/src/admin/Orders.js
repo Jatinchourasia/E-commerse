@@ -24,6 +24,8 @@ const Ordr = styled.div`
   box-shadow: 0px 0px 15px 3px rgba(21, 19, 46, 0.192);
   padding: 1.5rem 0rem 1.5rem 1.5rem;
   border-radius: 15px;
+  font-size: 1.6rem;
+
   .main {
     height: 100%;
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect, useHistory } from "react-router";
 import styled from "styled-components";
 import { isAutheticated } from "../auth/helper/index";
+import Loader from "../core/Loader";
 import AdminDashBoard from "../user/AdminDashBoard";
 import { createProduct, getCategories } from "./helper/adminapicall";
 
@@ -76,7 +77,7 @@ const AddProduct = () => {
     setValues({ ...values, error: "", loading: true });
     createProduct(user._id, token, formData).then((data) => {
       if (data.error) {
-        setValues({ ...values, error: data.error });
+        setValues({ ...values, error: data.error, loading: true });
       } else {
         setValues({
           ...values,
@@ -184,7 +185,7 @@ const AddProduct = () => {
         <div className="headre">
           <h2>Create Product</h2>
         </div>
-        <div className="main">{productForm()}</div>
+        {loading ? <Loader /> : <div className="main">{productForm()}</div>}
       </AddProd>
     );
   };
@@ -197,14 +198,17 @@ const AddProd = styled.div`
   height: 100%;
   flex-direction: column;
   box-shadow: 0px 0px 15px 3px rgba(21, 19, 46, 0.192);
-  padding: 1.5rem 0rem 1.5rem 1.5rem;
+  padding: 1rem 2rem 1rem 1rem;
+
   border-radius: 15px;
+  font-size: 1.6rem;
+
   .main {
     height: 100%;
 
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    padding: 1rem 2rem 1rem 1rem;
   }
 
   form {
@@ -214,9 +218,9 @@ const AddProd = styled.div`
     button {
       margin: 0.5rem 0;
       border: none;
-      width: 10rem;
+      width: 20rem;
       border-radius: 10px;
-      padding: 0.7rem 1.5rem;
+      padding: 1.2rem 2rem;
       font-family: "poppins", sans-serif;
       cursor: pointer;
       color: white;
@@ -225,7 +229,7 @@ const AddProd = styled.div`
     input {
       margin: 0.5rem 0;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 1rem 2rem;
       width: 80%;
       border-radius: 10px;
       border: solid #000000 1px;
@@ -238,11 +242,11 @@ const AddProd = styled.div`
     textarea {
       margin: 0.5rem 0;
       border: none;
-      padding: 0.7rem 1rem;
+      padding: 0.7rem 1.2rem;
       max-width: 80%;
       min-width: 80%;
-      min-height: 2.5rem;
-      max-height: 2.5rem;
+      min-height: 5rem;
+      max-height: 5rem;
 
       border-radius: 10px;
       border: solid #000000 1px;
@@ -251,6 +255,7 @@ const AddProd = styled.div`
       outline: none;
       font-family: "poppins", sans-serif;
       color: black;
+      font-size: 1.5rem;
     }
     span {
       font-size: 0.9rem;
@@ -274,15 +279,15 @@ const AddProd = styled.div`
     }
     .success {
       font-size: 1rem;
-      width: 16rem;
-      padding: 0.2rem 0.6rem;
+      width: 23rem;
+      padding: 0.8rem 1.2rem;
       border-radius: 10px;
       background: #afcaaf;
     }
     .warning {
       font-size: 1rem;
-      width: 16rem;
-      padding: 0.2rem 0.6rem;
+      width: 23rem;
+      padding: 0.8rem 1.2rem;
       border-radius: 10px;
       background: #caafaf;
     }

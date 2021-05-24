@@ -119,6 +119,8 @@ const SignIn = () => {
   );
 };
 const Success = styled.div`
+  font-size: 1.6rem;
+
   p {
     display: flex;
     align-items: center;
@@ -185,7 +187,7 @@ const SigninForm = styled.div`
   }
   p {
     margin: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: gray;
   }
   a {
@@ -197,7 +199,8 @@ const SigninForm = styled.div`
     width: 28vw;
     border: none;
     border-radius: 10px;
-    padding: 0.6rem 1rem;
+    padding: 1rem 1.4rem;
+
     font-family: "poppins", sans-serif;
     cursor: pointer;
     background-color: black;
